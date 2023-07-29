@@ -19,7 +19,7 @@ public class StudentController {
         return studentService.findStudent(id);
     }
     @PostMapping
-    public Student createStudent(Student student) {
+    public Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
     }
 }

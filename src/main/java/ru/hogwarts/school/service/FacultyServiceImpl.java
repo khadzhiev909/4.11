@@ -7,7 +7,7 @@ import ru.hogwarts.school.repository.FacultyRepository;
 import java.util.Optional;
 
 @Service
-public class FacultyServiceImpl implements FacultyService{
+public class FacultyServiceImpl implements FacultyService {
     private final FacultyRepository facultyRepository;
 
     public FacultyServiceImpl(FacultyRepository facultyRepository) {

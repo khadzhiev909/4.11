@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyServiceImpl;
 import ru.hogwarts.school.model.Faculty;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +31,7 @@ public class FacultyController {
         }
         return ResponseEntity.ok(faculty);
     }
+
     @PostMapping
     public Faculty createStudent(@RequestBody Faculty faculty) {
         return facultyService.createFaculty(faculty);
@@ -49,4 +52,20 @@ public class FacultyController {
         facultyService.removeFaculty(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping
+    public ResponseEntity<Faculty> findFacultyByName(@RequestParam String name) {
+        return ResponseEntity.ok(facultyService.findFacultyByName(name));
+    }
+
+    @GetMapping(params ={"color"})
+    public ResponseEntity<Collection<Faculty>> findAllByColor(@RequestParam String color) {
+        return ResponseEntity.ok(facultyService.findFacultyByColor(color));
+    }
+
+    @GetMapping("byStudent")
+    public ResponseEntity<Faculty> findFacultiesByStudent(@RequestParam Student student) {
+        return ResponseEntity.ok(facultyService.findFacultiesByStudent(student));
+    }
+
 }

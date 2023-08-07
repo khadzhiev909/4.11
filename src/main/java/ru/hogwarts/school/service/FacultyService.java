@@ -1,7 +1,9 @@
 package ru.hogwarts.school.service;
 
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface FacultyService {
@@ -12,4 +14,13 @@ public interface FacultyService {
     Faculty editFaculty(Faculty faculty);
 
     void removeFaculty(long id);
+
+    Faculty findFacultyByName(String name);
+
+    Collection<Faculty> getAll();
+
+    Collection<Faculty> findFacultyByColor(String color);
+
+    Faculty findFacultiesByStudent(Student student);
+
 }

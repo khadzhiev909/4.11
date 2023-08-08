@@ -54,4 +54,12 @@ public class Faculty {
     public int hashCode() {
         return Objects.hash(id, name, color);
     }
+
+    public Collection<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(Collection<Student> student) {
+        this.student = student;
+    }
 }

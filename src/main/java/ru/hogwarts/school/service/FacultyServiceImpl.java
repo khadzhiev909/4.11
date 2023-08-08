@@ -52,8 +52,10 @@ public class FacultyServiceImpl implements FacultyService {
     public Collection<Faculty> findFacultyByColor(String color) {
         return getAll().stream().filter(f -> f.getColor().equalsIgnoreCase(color)).collect(Collectors.toList());
     }
-    @Override
-    public Faculty findFacultiesByStudent(Student student) {
-        return facultyRepository.findFacultiesByStudent(student);
-    }
+
+
+//    @Override
+//    public Student findFacultiesByStudent(Long id) {
+//        return findFaculty(id).get();
+//    }
 }

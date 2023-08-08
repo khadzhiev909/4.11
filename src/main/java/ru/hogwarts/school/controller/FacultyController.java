@@ -64,8 +64,8 @@ public class FacultyController {
     }
 
     @GetMapping("byStudent")
-    public ResponseEntity<Faculty> findFacultiesByStudent(@RequestParam Student student) {
-        return ResponseEntity.ok(facultyService.findFacultiesByStudent(student));
+    public ResponseEntity<Student> findFacultiesByStudent(@RequestParam Long id) {
+        return ResponseEntity.ok(facultyService.findFacultiesByStudent(id));
     }
 
 }

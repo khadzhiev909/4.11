@@ -21,6 +21,5 @@ public interface FacultyService {
 
     Collection<Faculty> findFacultyByColor(String color);
 
-    Faculty findFacultiesByStudent(Student student);
-
+    Faculty findFacultiesByStudent(Long id);
 }

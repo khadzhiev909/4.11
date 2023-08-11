@@ -1,6 +1,7 @@
 package ru.hogwarts.school.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,4 +60,10 @@ public class StudentController {
     public ResponseEntity<Faculty> findFacultyByStudent(@RequestParam Long id) {
         return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
+
+//    @GetMapping("/getAll")
+//    public ResponseEntity<Collection<Student>> getAll() {
+//        return ResponseEntity.ok(studentService.getAll());
+//    }
+
 }

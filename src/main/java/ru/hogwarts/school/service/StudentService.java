@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface StudentService{
     Student createStudent(Student student);
 
-    Optional<Student> findStudent(long id);
+    Student findStudent(long id);
 
     Student editStudent(Student student);
 
@@ -18,4 +18,6 @@ public interface StudentService{
     Collection<Student> findAllStudentsByAgeBetween(int max, int min);
 
     Faculty findFacultyByStudent(Long id);
+
+    Collection<Student> getAll();
 }

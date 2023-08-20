@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Optional;
 
 @Entity
 public class Avatar {

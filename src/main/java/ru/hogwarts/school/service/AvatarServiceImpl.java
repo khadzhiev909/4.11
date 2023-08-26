@@ -35,7 +35,7 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     @Override
-    public void uploadAvatar(Long id, MultipartFile file) throws IOException {
+    public Long uploadAvatar(Long id, MultipartFile file) throws IOException {
         //получаем студента
         Student student = studentService.findStudent(id);
 
@@ -65,6 +65,8 @@ public class AvatarServiceImpl implements AvatarService {
         avatar.setMediaType(file.getContentType());
         avatar.setData(generateDataForBD(filePath));
         avatarRepository.save(avatar);
+
+        return avatar.getId();
     }
 
     private byte[] generateDataForBD(Path filePath) throws IOException {

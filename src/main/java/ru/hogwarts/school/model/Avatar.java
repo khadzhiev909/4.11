@@ -18,12 +18,12 @@ public class Avatar {
     byte[] data;
 
     @OneToOne
-    Optional<Student> student;
+    Student student;
 
     public Avatar() {
     }
 
-    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Optional<Student> student) {
+    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Student student) {
         this.id = id;
         this.filePath = filePath;
         this.fileSize = fileSize;
@@ -32,7 +32,7 @@ public class Avatar {
         this.student = student;
     }
 
-    public void setStudent(Optional<Student> student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
 
@@ -76,7 +76,7 @@ public class Avatar {
         this.data = data;
     }
 
-    public Optional<Student> getStudent() {
+    public Student getStudent() {
         return student;
     }
 

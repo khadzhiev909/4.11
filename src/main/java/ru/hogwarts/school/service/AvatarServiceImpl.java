@@ -38,7 +38,7 @@ public class AvatarServiceImpl implements AvatarService {
     @Override
     public Long uploadAvatar(Long id, MultipartFile file) throws IOException {
         //получаем студента
-        Optional<Student> student = studentService.getStudentById(id);
+        Student student = studentService.getStudentById(id);
 
         //работа с кассами. Позволяет удобно работать с путями
         //первый адрес папки, второе название файла (названием и бедет ид студента)

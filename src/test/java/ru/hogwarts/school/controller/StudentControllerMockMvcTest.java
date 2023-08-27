@@ -30,7 +30,7 @@ public class StudentControllerMockMvcTest {
     @Test
     public void testFindStudentById() throws Exception {
 
-        when(studentService.getStudentById(1L)).thenReturn(Optional.of(new Student(1L, "Первый", 23)));
+        when(studentService.getStudentById(1L)).thenReturn(new Student(1L, "Первый", 23));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
                 .andExpect(status().isOk());

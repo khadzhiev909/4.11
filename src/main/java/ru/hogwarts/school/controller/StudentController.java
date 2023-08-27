@@ -5,31 +5,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.repository.AvatarRepository;
-import ru.hogwarts.school.service.AvatarService;
 import ru.hogwarts.school.service.StudentServiceImpl;
 import ru.hogwarts.school.model.Student;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("student")
 public class StudentController {
     private final StudentServiceImpl studentService;
-    private final AvatarRepository avatarRepository;
-
-    private final AvatarService avatarService;
 
     @Autowired
-    public StudentController(StudentServiceImpl studentService, AvatarRepository avatarRepository, AvatarService avatarService) {
+    public StudentController(StudentServiceImpl studentService) {
         this.studentService = studentService;
-        this.avatarRepository = avatarRepository;
-        this.avatarService = avatarService;
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Student> getStudentInfo(@PathVariable long id) {
-        Student student = studentService.findStudent(id);
+    public ResponseEntity<Optional<Student>> getStudentInfo(@PathVariable long id) {
+        Optional<Student> student = studentService.getStudentById(id);
         if (student == null) {
             return ResponseEntity.notFound().build();
         }

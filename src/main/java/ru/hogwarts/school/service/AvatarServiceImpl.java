@@ -15,6 +15,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Optional;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -37,7 +38,7 @@ public class AvatarServiceImpl implements AvatarService {
     @Override
     public Long uploadAvatar(Long id, MultipartFile file) throws IOException {
         //получаем студента
-        Student student = studentService.findStudent(id);
+        Optional<Student> student = studentService.getStudentById(id);
 
         //работа с кассами. Позволяет удобно работать с путями
         //первый адрес папки, второе название файла (названием и бедет ид студента)
@@ -58,18 +59,18 @@ public class AvatarServiceImpl implements AvatarService {
             bis.transferTo(bos);
         }
 
-        Avatar avatar = findStudentAvatar(id);
+        Avatar avatar = findAvatar(id);
         avatar.setStudent(student);
         avatar.setFilePath(filePath.toString());
         avatar.setFileSize(file.getSize());
         avatar.setMediaType(file.getContentType());
-        avatar.setData(generateDataForBD(filePath));
+        avatar.setData(generateDataForDB(filePath));
         avatarRepository.save(avatar);
 
         return avatar.getId();
     }
 
-    private byte[] generateDataForBD(Path filePath) throws IOException {
+    private byte[] generateDataForDB(Path filePath) throws IOException {
 
         try (
                 InputStream is = Files.newInputStream(filePath);
@@ -95,7 +96,7 @@ public class AvatarServiceImpl implements AvatarService {
 
 
 
-    private Avatar findStudentAvatar(Long studentId) {
+    public Avatar findStudentAvatar(Long studentId) {
         return avatarRepository.findByStudent_Id(studentId).orElse(new Avatar());
     }
 

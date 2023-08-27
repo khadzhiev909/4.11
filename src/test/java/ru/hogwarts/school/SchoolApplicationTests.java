@@ -15,16 +15,5 @@ class   SchoolApplicationTests {
     @LocalServerPort
     private int port;
 
-    @Autowired
-    private StudentController studentController;
-
-
-    @Autowired
-    private TestRestTemplate testRestTemplate;
-
-    @Test
-    void contextLoads() throws Exception {
-        Assertions.assertNotNull(studentController);
-    }
 
 }

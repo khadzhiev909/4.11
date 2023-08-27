@@ -4,24 +4,35 @@ import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 public class Avatar {
     @Id
-    @GeneratedValue
-    Long id;
-    String filePath;
-    long fileSize;
-    String mediaType;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String filePath;
+    private long fileSize;
+    private String mediaType;
     @Lob
     byte[] data;
 
-
-
     @OneToOne
-    Student student;
+    Optional<Student> student;
 
-    public void setStudent(Student student) {
+    public Avatar() {
+    }
+
+    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Optional<Student> student) {
+        this.id = id;
+        this.filePath = filePath;
+        this.fileSize = fileSize;
+        this.mediaType = mediaType;
+        this.data = data;
+        this.student = student;
+    }
+
+    public void setStudent(Optional<Student> student) {
         this.student = student;
     }
 
@@ -65,7 +76,7 @@ public class Avatar {
         this.data = data;
     }
 
-    public Student getStudent() {
+    public Optional<Student> getStudent() {
         return student;
     }
 

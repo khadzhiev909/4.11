@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface StudentService{
     Student createStudent(Student student);
 
-    Student findStudent(long id);
+    Optional<Student> getStudentById(long id);
 
     Student editStudent(Student student);
 

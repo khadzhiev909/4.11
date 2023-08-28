@@ -54,6 +54,7 @@ public class FacultyControllerMockMvcTest {
 
         when(facultyRepository.save(any(Faculty.class))).thenReturn(faculty);
 
+
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/faculty")
                         .content(facultyObject.toString())

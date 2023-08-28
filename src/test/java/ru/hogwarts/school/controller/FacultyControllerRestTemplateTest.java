@@ -55,6 +55,7 @@ public class FacultyControllerRestTemplateTest {
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("red");
     }
+
     @Test
     public void testGetStudentsByFaculty() {
         Assertions

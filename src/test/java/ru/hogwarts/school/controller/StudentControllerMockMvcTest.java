@@ -82,8 +82,6 @@ public class StudentControllerMockMvcTest {
     @Test
     public void testGetFacultyByStudent() throws Exception {
 
-
-
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/student/byStudent/1")
                         .accept(MediaType.APPLICATION_JSON))

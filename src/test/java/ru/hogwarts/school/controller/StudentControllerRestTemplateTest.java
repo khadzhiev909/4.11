@@ -39,6 +39,7 @@ public class StudentControllerRestTemplateTest {
                 .isNotNull();
     }
 
+
     @Test
     public void testFindStudentByFaculty() {
         Faculty faculty = new Faculty("name", "red");

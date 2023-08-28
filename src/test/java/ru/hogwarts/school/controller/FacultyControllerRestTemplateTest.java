@@ -37,15 +37,35 @@ public class FacultyControllerRestTemplateTest {
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("name");
     }
+// ------------------------------------------------------------------------\
 
 
     @Test
-    public Faculty testDeleteFaculty() {
-        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.postForEntity("http://localhost:" + port + "/faculty", new Faculty("name", "Оранжевый"), Faculty.class);
+    public void testGetFacultyByName() {
+        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?name=name", Faculty.class);
 
-
-        Assertions
-                .assertThat(this.testRestTemplate.delete("http://localhost:" + port + "/faculty/" + facultyResponseEntity.getBody().getId()))
-                .isNotNull();
+        assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("name");
     }
+
+    @Test
+    public void testFindAllByColor() {
+        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?color=red", Faculty.class);
+
+        assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("red");
+    }
+    @Test
+    public void testGetStudentsByFaculty() {
+        Assertions
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?id=1",Faculty.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions
+               .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?id=1",Faculty.class).getBody().getName()).isEqualTo("name");
+    }
+
+//    @Test
+//    public Faculty testDeleteFaculty() {
+//        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.postForEntity("http://localhost:" + port + "/faculty", new Faculty("name", "Оранжевый"), Faculty.class);
+//
+//    }
 }

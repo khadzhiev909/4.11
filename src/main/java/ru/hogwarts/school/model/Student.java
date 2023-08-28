@@ -15,14 +15,16 @@ public class Student {
     private String name;
     private int age;
 
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
+
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 
     public Student() {
 

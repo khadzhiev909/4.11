@@ -33,13 +33,13 @@ public class FacultyController {
     }
 
     @PostMapping
-    public Faculty createStudent(@RequestBody Faculty faculty) {
+    public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.createFaculty(faculty);
     }
 
 
     @PutMapping
-    public ResponseEntity<Faculty> editStudent(@RequestBody Faculty faculty) {
+    public ResponseEntity<Faculty> editFaculty(@RequestBody Faculty faculty) {
         Faculty faculty1 = facultyService.editFaculty(faculty);
         if (faculty1 == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -53,7 +53,7 @@ public class FacultyController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping(params ={"name"})
     public ResponseEntity<Faculty> findFacultyByName(@RequestParam String name) {
         return ResponseEntity.ok(facultyService.findFacultyByName(name));
     }
@@ -64,8 +64,8 @@ public class FacultyController {
     }
 
     @GetMapping("id")
-    public ResponseEntity<Collection<Student>> findFacultiesByStudent(@RequestParam Long id) {
-        return ResponseEntity.ok(facultyService.findFacultiesByStudent(id));
+    public ResponseEntity<Collection<Student>> findStudentsBuFaculty(@RequestParam Long id) {
+        return ResponseEntity.ok(facultyService.findStudentsBuFaculty(id));
     }
 
 }

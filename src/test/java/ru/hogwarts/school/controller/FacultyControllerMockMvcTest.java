@@ -41,7 +41,6 @@ public class FacultyControllerMockMvcTest {
 
     @Test
     public void testCreateFaculty() throws Exception {
-
         JSONObject facultyObject = new JSONObject();
         facultyObject.put("id", 1L);
         facultyObject.put("name", "name");

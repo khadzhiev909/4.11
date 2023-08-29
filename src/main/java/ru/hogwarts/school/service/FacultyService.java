@@ -16,7 +16,6 @@ public class FacultyService {
         storageFaculty.put(count, faculty);
         return faculty;
     }
-
     public Faculty findFaculty(long id) {
         return storageFaculty.get(id);
     }

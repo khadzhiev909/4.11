@@ -53,20 +53,23 @@ public class FacultyControllerRestTemplateTest {
         ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?color=red", Faculty.class);
 
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(facultyResponseEntity.getBody().getName()).isEqualTo("red");
+        assertThat(facultyResponseEntity.getBody().getColor()).isEqualTo("red");
     }
-
     @Test
     public void testGetStudentsByFaculty() {
         Assertions
-                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?id=1",Faculty.class).getStatusCode()).isEqualTo(HttpStatus.OK);
+                .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/1",Faculty.class).getStatusCode()).isEqualTo(HttpStatus.OK);
         Assertions
-               .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty?id=1",Faculty.class).getBody().getName()).isEqualTo("name");
+               .assertThat(this.testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/1",Faculty.class).getBody().getName()).isEqualTo("name");
     }
 
-//    @Test
-//    public Faculty testDeleteFaculty() {
-//        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.postForEntity("http://localhost:" + port + "/faculty", new Faculty("name", "Оранжевый"), Faculty.class);
-//
-//    }
+    @Test
+    public void testDeleteFaculty() {
+        testRestTemplate.delete("http://localhost:" + port + "/faculty/1");
+
+        ResponseEntity<Faculty> facultyResponseEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/faculty/1", Faculty.class);
+
+        Assertions
+                .assertThat(facultyResponseEntity).isNull();
+    }
 }

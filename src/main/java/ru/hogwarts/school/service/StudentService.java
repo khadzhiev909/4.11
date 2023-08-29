@@ -1,10 +1,10 @@
 package ru.hogwarts.school.service;
 
+import ru.hogwarts.school.model.Age;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public interface StudentService{
     Student createStudent(Student student);
@@ -20,4 +20,11 @@ public interface StudentService{
     Faculty findFacultyByStudent(Long id);
 
     Collection<Student> getAll();
+
+    /* ---------------------------------------------------------------------------*/
+    Long getAmountStudent();
+
+    Age getAverageOfStudent();
+
+    Collection<Student> getTopFiveStudents();
 }

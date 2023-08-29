@@ -5,6 +5,7 @@ import ru.hogwarts.school.model.Student;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public interface FacultyService {
     Faculty createFaculty(Faculty faculty);

@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @RestController
 @RequestMapping("avatar")
@@ -29,6 +30,11 @@ public class AvatarController {
     public ResponseEntity<Long> upLoadAvatar(@PathVariable Long id, @RequestParam MultipartFile avatar) throws IOException {
         Long avatarId = avatarService.uploadAvatar(id, avatar);
         return ResponseEntity.ok(avatarId);
+    }
+
+    @GetMapping("/avatars")
+    public List<Avatar> getAvatars(@RequestParam Integer page, @RequestParam Integer size) {
+        return avatarService.getAllAvatars(page, size);
     }
 
     @GetMapping(value = "/{id}/avatar/preview")

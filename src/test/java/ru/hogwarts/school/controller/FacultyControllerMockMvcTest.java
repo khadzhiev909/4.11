@@ -74,4 +74,38 @@ public class FacultyControllerMockMvcTest {
     public void testFindFacultyByColor() {
 
     }
+
+    @Test
+    public void testDeleteFacultyById() throws Exception {
+        JSONObject facultyObject = new JSONObject();
+        facultyObject.put("id", 1L);
+        facultyObject.put("name", "name");
+        facultyObject.put("color", "red");
+
+        Faculty faculty = new Faculty();
+        faculty.setId(1L);
+        faculty.setName("name");
+        faculty.setColor("red");
+
+        when(facultyRepository.save(any(Faculty.class))).thenReturn(faculty);
+
+        mockMvc.perform(MockMvcRequestBuilders
+                .delete("/faculty/1")
+        );
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .post("/faculty")
+                        .content(facultyObject.toString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.name").value("name"))
+                .andExpect(jsonPath("$.color").value("red"));
+    }
+
+    @Test
+    public void testGetFacultyByName() {
+
+    }
 }

@@ -39,8 +39,14 @@ public class StudentControllerMockMvcTest {
 
     @Test
     public void testFindStudentById() throws Exception {
+        JSONObject studentObject = new JSONObject();
+        studentObject.put("id", 1L);
+        studentObject.put("name", "name");
+        studentObject.put("age", 34);
 
-        when(studentService.getStudentById(1L)).thenReturn(new Student(1L, "Первый", 23));
+        Student student = new Student(1l, "name", 34);
+
+        when(studentService.getStudentById(1L)).thenReturn(student);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/student/1"))
                 .andExpect(status().isOk());
@@ -73,7 +79,6 @@ public class StudentControllerMockMvcTest {
                 .andExpect(jsonPath("$.name").value("name"))
                 .andExpect(jsonPath("$.age").value(34));
     }
-
     @Test
     public void testFindStudentsByAgeBetween() {
 

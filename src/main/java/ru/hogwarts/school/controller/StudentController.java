@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.model.Age;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.service.StudentServiceImpl;
 import ru.hogwarts.school.model.Student;
@@ -59,4 +60,21 @@ public class StudentController {
     public ResponseEntity<Faculty> findFacultyByStudent(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
+    /* ------------------------------------------------------------- */
+
+    @GetMapping("/get-amount-student")
+    public Long getAmountStudent() {
+        return studentService.getAmountStudent();
+    }
+
+    @GetMapping("/get-average-student")
+    public Age getAvgStudent() {
+        return studentService.getAverageOfStudent();
+    }
+
+    @GetMapping("/students/top-five")
+    public Collection<Student> getTopFiveStudents() {
+        return studentService.getTopFiveStudents();
+    }
+
 }

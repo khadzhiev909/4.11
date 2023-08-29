@@ -32,7 +32,6 @@ public class AvatarController {
         return ResponseEntity.ok(avatarId);
     }
 
-
     @GetMapping("/avatars")
     public List<Avatar> getAvatars(@RequestParam Integer page, @RequestParam Integer size) {
         return avatarService.getAllAvatars(page, size);

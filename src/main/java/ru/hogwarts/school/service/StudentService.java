@@ -1,30 +1,30 @@
 package ru.hogwarts.school.service;
 
-import org.springframework.stereotype.Service;
+import ru.hogwarts.school.model.Age;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
 
-@Service
-public class StudentService {
-    private final Map<Long, Student> storageStudents = new HashMap<>();
-    private long count = 0;
+public interface StudentService{
+    Student createStudent(Student student);
 
-    public Student createStudent(Student student) {
-        storageStudents.put(count++ ,student);
-        return student;
-    }
-    public Student findStudent(long id) {
-        return storageStudents.get(id);
-    }
+    Student getStudentById(long id);
 
-    public Student editStudent(Student student) {
-        storageStudents.put(student.getId(), student);
-        return student;
-    }
+    Student editStudent(Student student);
 
-    public Student removeStudent(long id) {
-        return storageStudents.remove(id);
-    }
+    void removeStudent(long id);
+
+    Collection<Student> findAllStudentsByAgeBetween(int max, int min);
+
+    Faculty findFacultyByStudent(Long id);
+
+    Collection<Student> getAll();
+
+    /* ---------------------------------------------------------------------------*/
+    Long getAmountStudent();
+
+    Age getAverageOfStudent();
+
+    Collection<Student> getTopFiveStudents();
 }

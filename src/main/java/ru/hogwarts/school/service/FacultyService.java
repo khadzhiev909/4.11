@@ -1,31 +1,28 @@
 package ru.hogwarts.school.service;
 
-import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Stream;
 
-@Service
-public class FacultyService {
-    private final Map<Long, Faculty> storageFaculty = new HashMap<>();
-    private long count = 0;
+public interface FacultyService {
+    Faculty createFaculty(Faculty faculty);
 
-    public Faculty createFaculty(Faculty faculty) {
-        faculty.setId(++count);
-        storageFaculty.put(count, faculty);
-        return faculty;
-    }
-    public Faculty findFaculty(long id) {
-        return storageFaculty.get(id);
-    }
+    Optional<Faculty> findFaculty(long id);
 
-    public Faculty editFaculty(Faculty faculty) {
-        storageFaculty.put(faculty.getId(), faculty);
-        return faculty;
-    }
+    Faculty editFaculty(Faculty faculty);
 
-    public Faculty removeFaculty(long id) {
-        return storageFaculty.remove(id);
-    }
+    void removeFaculty(long id);
+
+    Faculty findFacultyByName(String name);
+
+    Collection<Faculty> getAll();
+
+    Collection<Faculty> findFacultyByColor(String color);
+
+    Collection<Student> findStudentsByFaculty(Long id);
+
+    Collection<Faculty> getAllByColor(String color);
 }
